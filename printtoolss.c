@@ -1,47 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strtools.c                                         :+:      :+:    :+:   */
+/*   printtoolss.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kael-ala <kael-ala@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/09 02:28:51 by kael-ala          #+#    #+#             */
-/*   Updated: 2023/12/09 02:40:27 by kael-ala         ###   ########.fr       */
+/*   Created: 2023/12/10 19:25:25 by kael-ala          #+#    #+#             */
+/*   Updated: 2023/12/10 20:37:01 by kael-ala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
-void	ft_putchar(int c)
+int	ft_putexa_upper(unsigned long long n)
 {
-    write(1, &c, 1);
+	int		count;
+	char	*buff;
+
+	count = 0;
+	buff = "0123456789ABCDEF";
+	if (n > 15)
+	{
+		count += ft_putexa(n / 16);
+		count += ft_putexa(n % 16);
+	}
+	else
+		count += ft_putchar(buff[n]);
+	return (count);
 }
 
-void	ft_putnbr(int n)
+int	ft_putunbr(unsigned int n)
 {
-	long	nbr;
+	unsigned long	nbr;
+	int				count;
 
 	nbr = n;
-	if (nbr < 0)
-	{
-		ft_putchar('-');
-		nbr = -nbr;
-	}
+	count = 0;
 	if (nbr < 10)
+	{
 		ft_putchar(nbr + 48);
+		count++;
+	}
 	else
 	{
 		ft_putnbr(nbr / 10);
 		ft_putnbr(nbr % 10);
 	}
-}
-
-void	ft_putstr(const char *str)
-{
-	int	i;
-
-	i = 0;
-	while(str[i])
-		ft_putchar(str[i++]);
-
+	return (count);
 }
