@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   printtools.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dedsec <dedsec@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kael-ala <kael-ala@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 02:28:51 by kael-ala          #+#    #+#             */
-/*   Updated: 2023/12/11 01:49:30 by dedsec           ###   ########.fr       */
+/*   Updated: 2023/12/11 13:33:12 by kael-ala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,22 +20,25 @@ int	ft_putchar(int c)
 int	ft_putnbr(int n)
 {
 	long	nbr;
+	int		count;
 
 	nbr = n;
+	count = 0;
 	if (nbr < 0)
 	{
-		ft_putchar('-');
+		count += ft_putchar('-');
 		nbr = -nbr;
 	}
 	if (nbr < 10)
 	{
-		ft_putchar(nbr + 48);
+		count += ft_putchar(nbr + 48);
 	}
 	else
 	{
-		ft_putnbr(nbr / 10);
-		ft_putnbr(nbr % 10);
+		count += ft_putnbr(nbr / 10);
+		count += ft_putnbr(nbr % 10);
 	}
+	return (count);
 }
 
 int	ft_putstr(const char *str)
@@ -45,6 +48,11 @@ int	ft_putstr(const char *str)
 
 	i = 0;
 	count = 0;
+	if (!str)
+	{
+		write(1, "(null)", 6);
+		return(6);
+	}
 	while (str[i])
 	{
 		ft_putchar(str[i++]);
@@ -55,8 +63,8 @@ int	ft_putstr(const char *str)
 
 int	ft_putexa(unsigned long long n)
 {
-	int		count;
-	char	*buff;
+	int			count;
+	char		*buff;
 
 	count = 0;
 	buff = "0123456789abcdef";
@@ -75,6 +83,7 @@ int	ft_putaddress(void *n)
 	int					count;
 	unsigned long long	add;
 
+	count = 0;
 	add = (unsigned long long)n;
 	count = 0;
 	count += ft_putstr("0x");

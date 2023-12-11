@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dedsec <dedsec@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kael-ala <kael-ala@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 23:02:17 by kael-ala          #+#    #+#             */
-/*   Updated: 2023/12/11 01:26:58 by dedsec           ###   ########.fr       */
+/*   Updated: 2023/12/11 13:33:51 by kael-ala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int setter(char format, va_list elp)
+int	setter(char format, va_list elp)
 {
 	int	count;
 
@@ -35,6 +35,7 @@ int setter(char format, va_list elp)
 		count += ft_putexa_upper(va_arg(elp, unsigned int));
 	else if (format == '%')
 		count += ft_putchar('%');
+	return (count);
 }
 
 int	ft_printf(const char *format, ...)
@@ -49,19 +50,21 @@ int	ft_printf(const char *format, ...)
 		if (*format == '%')
 		{
 			format++;
-			setter(*format, elp);
+			count += setter(*format, elp);
+			if (*format)
+				format++;
+		}
+		else {
+			count += ft_putchar(*format);
 			format++;
 		}
-		count += ft_putchar(*format);
-		if (*format)
-			format++;
 	}
+	va_end(elp);
 	return (count);
 }
-
-int main(void)
-{
-	int p = 2;
-	printf("%d\n", ft_printf("%p\n", &p));
-	printf("%d\n", printf("%p\n", &p));
-}
+// int main(void)
+// {
+// // 	ft_printf(" %i %i %i %i %i %i %", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
+// 	ft_printf("%s ", (char *)NULL);
+// // 	// printf("%d\n", printf("%%"));
+// }
