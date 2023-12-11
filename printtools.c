@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   printtools.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kael-ala <kael-ala@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dedsec <dedsec@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 02:28:51 by kael-ala          #+#    #+#             */
-/*   Updated: 2023/12/10 20:36:52 by kael-ala         ###   ########.fr       */
+/*   Updated: 2023/12/11 01:49:30 by dedsec           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,27 +20,22 @@ int	ft_putchar(int c)
 int	ft_putnbr(int n)
 {
 	long	nbr;
-	int		count;
 
 	nbr = n;
-	count = 0;
 	if (nbr < 0)
 	{
 		ft_putchar('-');
 		nbr = -nbr;
-		count = 1;
 	}
 	if (nbr < 10)
 	{
 		ft_putchar(nbr + 48);
-		count++;
 	}
 	else
 	{
 		ft_putnbr(nbr / 10);
 		ft_putnbr(nbr % 10);
 	}
-	return (count);
 }
 
 int	ft_putstr(const char *str)
@@ -86,9 +81,3 @@ int	ft_putaddress(void *n)
 	count += ft_putexa(add);
 	return (count);
 }
-
-// int main(void)
-// {
-// 	ft_putaddress(20000000000);
-// 	return (0);
-// }
