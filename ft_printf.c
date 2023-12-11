@@ -6,13 +6,13 @@
 /*   By: kael-ala <kael-ala@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 23:02:17 by kael-ala          #+#    #+#             */
-/*   Updated: 2023/12/11 13:33:51 by kael-ala         ###   ########.fr       */
+/*   Updated: 2023/12/11 21:06:30 by kael-ala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	setter(char format, va_list elp)
+static int	setter(char format, va_list elp)
 {
 	int	count;
 
@@ -45,6 +45,8 @@ int	ft_printf(const char *format, ...)
 
 	count = 0;
 	va_start(elp, format);
+	if (write(1, 0, 0) < 0)
+		return (-1);
 	while (*format)
 	{
 		if (*format == '%')
@@ -54,7 +56,8 @@ int	ft_printf(const char *format, ...)
 			if (*format)
 				format++;
 		}
-		else {
+		else
+		{
 			count += ft_putchar(*format);
 			format++;
 		}
@@ -62,9 +65,3 @@ int	ft_printf(const char *format, ...)
 	va_end(elp);
 	return (count);
 }
-// int main(void)
-// {
-// // 	ft_printf(" %i %i %i %i %i %i %", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
-// 	ft_printf("%s ", (char *)NULL);
-// // 	// printf("%d\n", printf("%%"));
-// }

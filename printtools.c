@@ -6,7 +6,7 @@
 /*   By: kael-ala <kael-ala@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 02:28:51 by kael-ala          #+#    #+#             */
-/*   Updated: 2023/12/11 13:33:12 by kael-ala         ###   ########.fr       */
+/*   Updated: 2023/12/11 20:18:14 by kael-ala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	ft_putstr(const char *str)
 	if (!str)
 	{
 		write(1, "(null)", 6);
-		return(6);
+		return (6);
 	}
 	while (str[i])
 	{
