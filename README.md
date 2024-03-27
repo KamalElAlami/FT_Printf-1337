@@ -1,7 +1,7 @@
-# ft_printf - My 42 School Project Journey 📚
+# ft_printf - My 1337 Project Journey 📚
 
 ## Description
-`ft_printf` is a significant project undertaken during my time at 42 School, aimed at implementing a custom version of the standard C library function `printf`. This project challenged me to understand the intricacies of formatting and outputting data in various formats.
+`ft_printf` is a significant project undertaken during my time at 1337 FIL, aimed at implementing a custom version of the standard C library function `printf`. This project challenged me to understand the intricacies of formatting and outputting data in various formats.
 
 ## My Learning Journey 🚀
 Throughout the development of `ft_printf`, I encountered and explored several key concepts:
